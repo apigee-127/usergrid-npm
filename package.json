@@ -1,0 +1,26 @@
+{
+  "name": "usergrid-installer",
+  "version": "0.0.1",
+  "description": "Installs the Usergrid standalone launcher jar to ~/.a127/usergrid on request",
+  "keywords": [
+    "apigee",
+    "a127"
+  ],
+  "author": "Scott Ganyo <sganyo@apigee.com>",
+  "license": "MIT",
+  "main": "lib/download.js",
+  "dependencies": {
+    "debug": ""
+  },
+  "devDependencies": {
+    "mocha": "",
+    "should": ""
+  },
+  "scripts" : {
+    "x-install": "node index.js"
+  },
+  "usergrid": {
+    "version": "0.0.29",
+    "launcher": "https://s3.amazonaws.com/appservices-deployments/apache-usergrid/launcher/usergrid-launcher-0.0.29-SNAPSHOT.jar"
+  }
+}
