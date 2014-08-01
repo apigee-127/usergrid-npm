@@ -20,9 +20,9 @@ The file will be deposited in the ~/.a127/usergrid directory.
 
 You must keep the following package.json field in sync:
 
-1) version
-2) usergrid.version  (used to identify the downloaded file name)
-3) usergrid.launcher (the URL of the jar matching the version)
+1. version
+2. usergrid.version  (used to identify the downloaded file name)
+3. usergrid.launcher (the URL of the jar matching the version)
 
 Please adhere to [Semantic Versioning](http://semver.org) for both version numbers such that modules relying on the 
 Semantic Versioning of the npm version can have similar assumptions about the Usergrid version.
