@@ -1,6 +1,6 @@
 {
   "name": "usergrid-installer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Installs the Usergrid standalone launcher jar to ~/.a127/usergrid on request",
   "keywords": [
     "apigee",
@@ -16,7 +16,7 @@
     "mocha": "",
     "should": ""
   },
-  "scripts" : {
+  "scripts": {
     "x-install": "node index.js"
   },
   "usergrid": {
