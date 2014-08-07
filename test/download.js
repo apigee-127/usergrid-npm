@@ -44,7 +44,7 @@ describe('downloader', function() {
 
     it('should download when requested', function(done) {
 
-      this.timeout(45000);
+      this.timeout(60000);
 
       var originalLauncherFile = config.usergrid.launcherFile;
       var launcherFileName = 'usergrid-launcher-' + config.usergrid.version + '.jar';
