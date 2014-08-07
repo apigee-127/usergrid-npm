@@ -3,10 +3,12 @@ var config = require('../lib/config');
 var path = require('path');
 var should = require('should');
 var fs = require('fs');
+var os = require('os');
 
 describe('downloader', function() {
 
-  var testFile = path.join(config.tmpDir, 'download.test');
+  var tmpDir = os.tmpdir();
+  var testFile = path.join(tmpDir, 'download.test');
 
   it('should be able to download a small test file', function(done) {
 
@@ -33,6 +35,21 @@ describe('downloader', function() {
 
   describe('launcher', function() {
 
+    var originalLauncherFile = config.usergrid.launcherFile;
+
+    before(function(done) {
+      var launcherFileName = 'usergrid-launcher-' + config.usergrid.version + '.jar';
+      config.usergrid.launcherFile = path.join(tmpDir, launcherFileName);
+      done();
+    });
+
+    after(function(done) {
+      fs.unlink(config.usergrid.launcherFile, function() {
+        config.usergrid.launcherFile = originalLauncherFile;
+        done();
+      });
+    });
+
     it('should not download when not requested', function(done) {
 
       download.launcherFile(false, function(err, fileName) {
@@ -45,17 +62,6 @@ describe('downloader', function() {
     it('should download when requested', function(done) {
 
       this.timeout(60000);
-
-      var originalLauncherFile = config.usergrid.launcherFile;
-      var launcherFileName = 'usergrid-launcher-' + config.usergrid.version + '.jar';
-      config.usergrid.launcherFile = path.join(config.tmpDir, launcherFileName);
-
-      after(function(done) {
-        fs.unlink(config.usergrid.launcherFile, function() {
-          config.usergrid.launcherFile = originalLauncherFile;
-          done();
-        });
-      });
 
       download.launcherFile(true, function(err, fileName) {
         should.not.exist(err);
