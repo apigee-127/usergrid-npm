@@ -1,6 +1,6 @@
 {
   "name": "usergrid-installer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Installs the Usergrid standalone launcher jar to ~/.a127/usergrid on request",
   "keywords": [
     "apigee",
