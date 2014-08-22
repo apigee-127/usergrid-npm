@@ -10,7 +10,8 @@
   "license": "MIT",
   "main": "lib/download.js",
   "dependencies": {
-    "debug": ""
+    "debug": "",
+    "tar": ""
   },
   "devDependencies": {
     "mocha": "",
@@ -22,5 +23,9 @@
   "usergrid": {
     "version": "0.0.29",
     "launcher": "https://s3.amazonaws.com/appservices-deployments/apache-usergrid/launcher/usergrid-launcher-0.0.29-SNAPSHOT.jar"
+  },
+  "portal": {
+    "version": "2.0.16",
+    "gzip": "https://s3-us-west-2.amazonaws.com/usergrid-portal/usergrid-portal.tar.gz"
   }
 }

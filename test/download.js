@@ -71,4 +71,50 @@ describe('downloader', function() {
     });
 
   });
+
+  describe('portal', function() {
+
+    var originalPortalFile = config.portal.gzip;
+    var originalPortalDir = config.portal.dir;
+
+    before(function(done) {
+      var portalGzipName = 'usergrid-portal-' + config.portal.version + '.tar.gz';
+      config.portal.gzip = path.join(tmpDir, portalGzipName);
+      var portalDirName = 'usergrid-portal-' + config.portal.version;
+      config.portal.dir = path.join(tmpDir, portalDirName);
+      done();
+    });
+
+    after(function(done) {
+      fs.unlink(config.portal.gzip, function() {
+        download._rmDir(config.portal.dir);
+        config.portal.dir = originalPortalDir;
+        config.portal.gzip = originalPortalFile;
+        done();
+      });
+    });
+
+    it('should not download when not requested', function(done) {
+
+      download.portalFile(false, function(err, fileName) {
+        should.not.exist(err);
+        should.not.exist(fileName);
+        done();
+      });
+    });
+
+    it('should download and inflate when requested', function(done) {
+
+      this.timeout(60000);
+
+      download.portalFile(true, function(err, file) {
+        should.not.exist(err);
+        var expectedFile = path.resolve(config.portal.dir, 'usergrid-portal/index.html');
+        file.should.equal(expectedFile);
+
+        fs.existsSync(file).should.be.true;
+        done();
+      });
+    });
+  });
 });
